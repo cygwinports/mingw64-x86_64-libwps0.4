@@ -1,0 +1,13 @@
+src/lib/libwps_internal.h:63:38: error: ‘gmtime’ was not declared in this scope
+src/lib/WKSContentListener.cpp:1290:7: note: in expansion of macro ‘gmtime_r’
+
+--- origsrc/libwps-0.4.3/src/lib/libwps_internal.h	2016-02-04 14:15:02.000000000 -0600
++++ src/libwps-0.4.3/src/lib/libwps_internal.h	2016-07-25 17:17:56.191929400 -0500
+@@ -60,6 +60,7 @@ typedef unsigned int uint32_t;
+ // define localtime_r on Windows, so that can use
+ // thread-safe functions on other environments
+ #ifdef _WIN32
++#  include <time.h>
+ #  define gmtime_r(tp,tmp) (gmtime(tp)?(*(tmp)=*gmtime(tp),(tmp)):0)
+ #  define localtime_r(tp,tmp) (localtime(tp)?(*(tmp)=*localtime(tp),(tmp)):0)
+ #endif

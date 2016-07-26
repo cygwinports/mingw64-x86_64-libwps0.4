@@ -1,0 +1,24 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-libwps0.4"
+VERSION=0.4.3
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="MS Works word processor format library for Win64 toolchain"
+DESCRIPTION="libwps is a library (for use by word procesors, for example) for
+importing the Microsoft Works word processor file format."
+HOMEPAGE="http://libwps.sourceforge.net/"
+SRC_URI="mirror://sourceforge/libwps/libwps-${VERSION}.tar.gz"
+SRC_DIR="libwps-${VERSION}"
+PATCH_URI="0.4.3-mingw-compile.patch"
+
+# FTBFS with -Werror=unused-local-typedefs
+CYGCONF_ARGS="--disable-werror --without-docs"
+
+src_install() {
+	cd ${B}
+	cyginstall bin_PROGRAMS=
+}
+
+KEEP_LA_FILES="none"
