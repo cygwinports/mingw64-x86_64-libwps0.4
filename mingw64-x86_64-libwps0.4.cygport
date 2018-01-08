@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-libwps0.4"
-VERSION=0.4.3
+VERSION=0.4.8
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="MS Works word processor format library for Win64 toolchain"
@@ -15,10 +15,4 @@ PATCH_URI="0.4.3-mingw-compile.patch"
 
 # FTBFS with -Werror=unused-local-typedefs
 CYGCONF_ARGS="--disable-werror --without-docs"
-
-src_install() {
-	cd ${B}
-	cyginstall bin_PROGRAMS=
-}
-
-KEEP_LA_FILES="none"
+MAKEOPTS+=" bin_PROGRAMS= "
